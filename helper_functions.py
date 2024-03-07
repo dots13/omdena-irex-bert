@@ -18,20 +18,6 @@ from torch.utils.data import DataLoader
 import streamlit as st
 
 
-@st.cache_resource
-def load_model_h5(path):
-    return load_model(path, compile=False)
-
-
-@st.cache(allow_output_mutation=True)
-def get_model():
-    model5 = "last-epoch-model-2024-02-27-15_22_42_3.pth"
-    f_checkpoint = Path(f"assets/models//{model5}")
-    # if verify_checkpoint(model5, f_checkpoint, "1klOgwmAUsjkVtTwMi9Cqyheednf_U18n"):
-    if verify_checkpoint(model5, f_checkpoint, "1DUzROEnqM6aaBXXnuVOvH2__8wBsEJa9"):
-        MODEL5 = load_model_h5(f_checkpoint)
-
-
 def verify_checkpoint(model_name, f_checkpoint, gID):
     if not f_checkpoint.exists():
         load_model_from_gd(model_name, gID)
