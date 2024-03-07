@@ -25,9 +25,10 @@ def verify_checkpoint(model_name, f_checkpoint, gID):
 
 
 def load_model_from_gd(model_name, gID):
-    save_dest = Path("models")
+    # save_dest = Path("models")
+    save_dest = Path("assets/models")
     save_dest.mkdir(exist_ok=True)
-    output = f"assets/models//{model_name}"
+    output = f"assets/models/{model_name}"
     # f_checkpoint = Path(f"models//{model_name}")
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
         gdown.download(id=gID, output=output, quiet=False)
