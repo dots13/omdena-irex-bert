@@ -20,7 +20,7 @@ if __name__ == "__main__":
         unsafe_allow_html=True,
     )
     st.markdown(
-        "<h3 style='text-align: center; color:white;'>BERT local deployment test</h3>",
+        "<h3 style='text-align: center; color:white;'>BERT: Misinformation Classification</h3>",
         unsafe_allow_html=True,
     )
 
