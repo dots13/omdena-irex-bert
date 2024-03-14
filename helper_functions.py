@@ -17,13 +17,13 @@ from faknow.evaluate.evaluator import Evaluator
 from torch.utils.data import DataLoader
 import streamlit as st
 
-@st.cache
+@st.cache_resource
 def verify_checkpoint(model_name, f_checkpoint, gID):
     if not f_checkpoint.exists():
         load_model_from_gd(model_name, gID)
     return f_checkpoint.exists()
 
-@st.cache
+@st.cache_resource
 def load_model_from_gd(model_name, gID):
     # save_dest = Path("models")
     save_dest = Path("assets/models")
