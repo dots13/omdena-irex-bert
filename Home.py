@@ -16,8 +16,9 @@ if __name__ == "__main__":
     tokenizer = TokenizerFromPreTrained(max_len, bert)
     model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
     f_checkpoint = Path(f"models//{model5}")
-    if not f_checkpoint.exists():
-        load_model(f_checkpoint)
+    #if not f_checkpoint.exists():
+    #    load_model(f_checkpoint)
+    load_model(f_checkpoint)
     path_to_model = f_checkpoint
     domain_num = 12
     max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
