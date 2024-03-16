@@ -10,22 +10,20 @@ def load_model(f_checkpoint):
     f_checkpoint = f_checkpoint
     with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
         gdown.download(id='1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE', quiet=True, use_cookies=False)
-        
-model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
-f_checkpoint = Path(f"models//{model5}")
-if not f_checkpoint.exists():
-    load_model(f_checkpoint)
-else:
-    path_to_model = f_checkpoint
-    domain_num = 12
-    max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
-    MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
-    MDFEND_MODEL.load_state_dict(torch.load(f=path_to_model , map_location=torch.device('cpu')))
-
 
 if __name__ == "__main__":
     max_len, bert = 178, "dccuchile/bert-base-spanish-wwm-uncased"
     tokenizer = TokenizerFromPreTrained(max_len, bert)
+    model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
+    f_checkpoint = Path(f"models//{model5}")
+    if not f_checkpoint.exists():
+        load_model(f_checkpoint)
+    else:
+        path_to_model = f_checkpoint
+        domain_num = 12
+        max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
+        MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
+        MDFEND_MODEL.load_state_dict(torch.load(f=path_to_model , map_location=torch.device('cpu')))
 
     # dataset
     batch_size = 64
