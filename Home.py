@@ -14,7 +14,7 @@ def load_model(f_checkpoint):
 model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
 f_checkpoint = Path(f"models//{model5}")
 if not f_checkpoint.exists():
-    load_model()
+    load_model(f_checkpoint)
 else:
     path_to_model = f_checkpoint
     domain_num = 12
