@@ -6,7 +6,6 @@ from pathlib import Path
 
 from helper_functions import *
 
-@st.cache_resource
 def model_init(MODEL_SAVE_PATH):
     print('model_init')
     MDFEND_MODEL = MDFEND(bert, domain_num, expert_num=15, mlp_dims=[2024, 1012, 606])
