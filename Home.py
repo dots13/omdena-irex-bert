@@ -6,6 +6,23 @@ from pathlib import Path
 
 from helper_functions import *
 
+def load_model(f_checkpoint):
+    f_checkpoint = f_checkpoint
+    with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+        gdown.download(id='1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE', quiet=True, use_cookies=False)
+        
+model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
+f_checkpoint = Path(f"models//{model5}")
+if not f_checkpoint.exists():
+    load_model()
+else:
+    path_to_model = f_checkpoint
+    domain_num = 12
+    max_len, bert = 178 , 'dccuchile/bert-base-spanish-wwm-uncased'
+    MDFEND_MODEL = MDFEND(bert, domain_num , expert_num=15 , mlp_dims = [2024 ,1012 ,606])
+    MDFEND_MODEL.load_state_dict(torch.load(f=path_to_model , map_location=torch.device('cpu')))
+
+
 if __name__ == "__main__":
     max_len, bert = 178, "dccuchile/bert-base-spanish-wwm-uncased"
     tokenizer = TokenizerFromPreTrained(max_len, bert)
@@ -23,18 +40,6 @@ if __name__ == "__main__":
         "<h3 style='text-align: center; color:white;'>BERT: Misinformation Classification</h3>",
         unsafe_allow_html=True,
     )
-
-    model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
-    f_checkpoint = Path(f"assets/models//{model5}")
-    # if verify_checkpoint(model5, f_checkpoint, "1eDXZoh_oeqHG3YRljx6scXknzgVVNivm"):
-    if verify_checkpoint(model5, f_checkpoint, "17KR1gHm85PfNJOxqTwdX3R5CaQbMR58c"):
-        MODEL_SAVE_PATH = f"assets/models/last-epoch-model-2024-02-27-15_22_42_6.pth"
-        MDFEND_MODEL = MDFEND(
-            bert, domain_num, expert_num=15, mlp_dims=[2024, 1012, 606]
-        )
-        MDFEND_MODEL.load_state_dict(
-            torch.load(f=MODEL_SAVE_PATH, map_location=torch.device("cpu"))
-        )
 
     testing_path = "sample.json"
     user_input = st.text_area("Enter Text to Analyze")
