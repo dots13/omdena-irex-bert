@@ -43,7 +43,7 @@ if __name__ == "__main__":
         print('verify_checkpoint')
     if f_checkpoint.exists():
         MODEL_SAVE_PATH = f"assets/models/last-epoch-model-2024-02-27-15_22_42_6.pth"
-        MDFEND_MODEL = model_init(MODEL_SAVE_PATH)
+    MDFEND_MODEL = model_init(f_checkpoint)
 
     testing_path = "sample.json"
     user_input = st.text_area("Enter Text to Analyze")
