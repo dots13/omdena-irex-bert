@@ -38,11 +38,11 @@ if __name__ == "__main__":
 
     model5 = "last-epoch-model-2024-02-27-15_22_42_6.pth"
     f_checkpoint = Path(f"assets/models//{model5}")
-    if verify_checkpoint(model5, f_checkpoint, "1-4NIx36LmRF2R5T8Eu5Zku_-CGvV07VE"):
+    # https://drive.google.com/file/d/1S4c77GF9PA29QOJyQOceZVb6zyBSbETG/view?usp=sharing
+    if verify_checkpoint(model5, f_checkpoint, "1S4c77GF9PA29QOJyQOceZVb6zyBSbETG"):
         print('verify_checkpoint')
-    if f_checkpoint.exists():
         MODEL_SAVE_PATH = f"assets/models/last-epoch-model-2024-02-27-15_22_42_6.pth"
-    MDFEND_MODEL = model_init(f_checkpoint)
+        MDFEND_MODEL = model_init(f_checkpoint)
 
     testing_path = "sample.json"
     user_input = st.text_area("Enter Text to Analyze")
